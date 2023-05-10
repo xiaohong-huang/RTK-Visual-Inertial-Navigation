@@ -208,7 +208,7 @@ void SWFOptimization::GnssProcess(mea_t* rover) {
             // options.trust_region_strategy_type = ceres::DOGLEG;
             options.initial_trust_region_radius = options.max_trust_region_radius = MAX_TRUST_REGION_RADIUS;
             options.max_num_iterations = 20;
-            options.num_threads = 8;
+            options.num_threads = 4;
             TicToc t_marg;
             ceres::Solver::Summary summary;
             ceres::Solve(options, &problem, &summary);
