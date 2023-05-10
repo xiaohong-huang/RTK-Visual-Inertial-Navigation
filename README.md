@@ -38,7 +38,9 @@ sudo apt-get install cmake
 # Eigen3
 sudo apt-get install libeigen3-dev
 # Ceres-Solver-Modified
-cd ~/catkin_ws/src/RTK-Visual-Inertial-Navigation/ceres-solver-modified/
+cd ~/catkin_ws/src/RTK-Visual-Inertial-Navigation
+tar -xvf ceres-solver-modified.tar
+cd ceres-solver-modified/
 sh build.sh
 ```
 The modified version will only be installed in the current folder. So you don't need to worry that the installation will change the settings of your computer.
