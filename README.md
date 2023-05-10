@@ -77,6 +77,6 @@ spp_CP_visual_inertial_config.yaml  #SPP-Visual-Inertial-Navigation with carrie
 visual_inertial_config.yaml         #Visual-Inertial-Navigation
 ```
 ## 4. Acknowledgements
-The VIO framework is adapted from [VINS-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono). The Ceres-Solver-Modified is developed base on 
+The VIO framework is adapted from [VINS-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono). The Ceres-Solver-Modified is developed base on [Ceres-Solver](http://ceres-solver.org/)
 ## 5. Licence
 The source code is released under [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) license.
