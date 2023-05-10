@@ -51,6 +51,10 @@ catkin_make
 
 
 ## 3. Run RTK-Visual-Inertial-Navigation with our dataset
+
+![image](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation/blob/main/fig/equipment.png)
+![image](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation/blob/main/fig/experiment_sense.png)
+
 Download our [Dataset]() and launch the rviz via:
 ```
 source ~/catkin_ws/devel/setup.bash
