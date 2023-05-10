@@ -41,7 +41,7 @@ sudo apt-get install libeigen3-dev
 cd ~/catkin_ws/src/RTK-Visual-Inertial-Navigation/ceres-solver-modified/
 sh build.sh
 ```
-The modified version will only installed in the current folder. So you don't need to worry that the installation will change the seeting of your computer.
+The modified version will only be installed in the current folder. So you don't need to worry that the installation will change the settings of your computer.
 
  Then build the package with:
 ```
@@ -51,9 +51,9 @@ catkin_make
 
 
 ## 3. Run RTK-Visual-Inertial-Navigation with our dataset
-Our equipment is shown as follow. A gray scale camera (MT9V034 752$\times$480@25HZ), a microelectronic mechanical system (MEMS) grade IMU (BMI088 400HZ), a $360^o$ prism, and a GNSS receiver (ublox ZED-F9P 10HZ) are installed together with a small GNSS antenna (BT-560) A Trimble S9 total station is installed in a fixed position and observes the prism to generate the ground truth of the rover station every 0.1 second with mm-level accuracy. A GNSS receiver (ublox ZED-F9P 1HZ) with an experimental-level antenna is installed in a fixed position for the base station.
+Our equipment is shown as follows. A grayscale camera (MT9V034 752x480@25HZ), a MEMS-grade IMU (BMI088 400HZ), a $360^o$ prism, and a GNSS receiver (ublox ZED-F9P 10HZ) are installed together with a small GNSS antenna (BT-560). A Trimble S9 total station is installed in a fixed position and observes the prism to generate the ground truth of the rover station every 0.1 seconds with mm-level accuracy. A GNSS receiver (ublox ZED-F9P 1HZ) with an experimental-level antenna is installed in a fixed position for the base station.
 ![image](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation/blob/main/fig/equipment.png)
-The experiment environment is shown as follow.
+The experiment environment is shown as follows.
 ![image](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation/blob/main/fig/experiment_sense.png)
 
 Download our [Dataset]() and launch the rviz via:
