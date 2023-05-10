@@ -26,7 +26,7 @@ SWFOptimization::SWFOptimization(): f_manager{Rs} {
     my_options.max_num_iterations = MAX_NUM_ITERATIONS;
     my_options.jacobi_scaling = 0;
     my_options.trust_region_strategy_type = ceres::DOGLEG;
-    my_options.num_threads = 8;
+    my_options.num_threads = 4;
     my_options.linear_solver_ordering.reset(new ceres::ParameterBlockOrdering());
     // my_options.max_solver_time_in_seconds=MAX_SOLVER_TIME;
 
