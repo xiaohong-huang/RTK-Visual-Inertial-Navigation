@@ -1,0 +1,123 @@
+%YAML:1.0
+
+imu: 1           #number of IMU
+num_of_cam: 1    #number of camera
+
+imu_topic: "imu_raw" #imu topic
+image0_topic: "left_camera"   #image topic
+# image1_topic: "right_camera"
+rtk_potic: "gnss" #gnss topic
+
+mag_potic: "mag_raw" #magnetometer topic
+pps_local_topic: "pps_local"  #used for data saving process only
+pps_gps_topic: "pps_gps" #used for data saving process only
+feature_topic: "features"  #visual feture topic
+cam0_calib: "cam0_pinhole.yaml"  #camera intrinsic parameter
+# cam1_calib: "cam1_pinhole.yaml"
+image_width: 752
+image_height: 480
+   
+max_cnt: 350            # max feature number in feature tracking
+min_dist: 30            # min distance between two features 
+
+keyframe_parallax: 40.0 # keyframe selection threshold (pixel)
+acc_n: 0.05          # accelerometer measurement noise standard deviation.0.0414 (data sheet)            d=f(c)=>  m/s^2=m/s^2/sqrt(HZ)*sqrt(HZ)
+gyr_n: 0.005         # gyroscope measurement noise standard deviation.        0.0048 (data sheet)           d=f(c)=>  rad/s=rad/s/sqrt(HZ)*sqrt(HZ)
+acc_w: 0.0005        # accelerometer bias random work noise standard deviation. d=f(c)=>  m/s^3 =m/s^3/sqrt(HZ)*sqrt(HZ)
+gyr_w: 0.00005       # gyroscope bias random work noise standard deviation.        d=f(c)=>  rad/s^2=rad/s^2/sqrt(HZ)*sqrt(HZ)
+g_norm: 9.8     # gravity magnitude
+
+F_THRESHOLD: 1.0        # ransac threshold (pixel)
+SHOW_TRACK: 1           # publish tracking image as topic
+FLOW_BACK: 0            # perform forward and backward optical flow to improve feature tracking accuracy
+USE_FEATURE: 1 #use pre-compute feature points. Set this to true can make the results more repeatable.
+CARRIER_PHASE_CONTINUE_THRESHOLD: 10   #use the phase bias if the observing epochs is larger than CARRIER_PHASE_CONTINUE_THRESHOLD.
+FIX_CONTINUE_THRESHOLD: 40 #fixed the integer if the ratio-test sucess for FIX_CONTINUE_THRESHOLD epochs.
+Phase_ALL_RESET_COUNT: 100 #reset the phase biases if the fixed solutions are unavaliable for Phase_ALL_RESET_COUNT epochs.
+
+USE_GLOBAL_OPTIMIZATION: 1 #use a global ceres solver for solving states
+USE_DIRECT_N_RESOLVE: 1       #obtain the covariance of phase biases when solving the Gauss-Newton problem
+USE_N_RESOLVE: 1                       #resolve the integer ambiguity
+AVERAGE_IMU: 400  #use the first AVERAGE_IMU numbert of IMU measurements to initialize the states of the system.
+SKIP_IMU: 0                #skip the first SKIP_IMU number of IMU measurements.
+AVERAGE_IMAGE: 60 #skip the first AVERAGE_IMAGE number of visual measurements.
+
+MAX_SOLVER_TIME: 0.4         #max solver time for solving the Gauss-Newton problem
+MAX_NUM_ITERATIONS: 8      #max number iteration when solving the Gauss-Newton problem
+MAX_TRUST_REGION_RADIUS:  1000000000000000.0 #Levenberg trust region radius
+
+USE_SPP_PHASE: 0  #use rover-only phase for solving the states
+USE_SPP_CORRECTION: 0   #estimate the spp correction when first observing the pseudorange measurements. usefull for the satellites unstable-tracking environment
+USE_GNSS: 1 #use gnss measurements
+USE_DOPPLER: 1 #use doppler measurements
+USE_RTK: 1  #use rover-base carrier-phase and pseudorange measureemnts
+USE_RTD: 1  #use rover-base pseudorange measureemnts
+
+ESTIMATE_EXTRINSIC: 0   #estimate camera-imu calibration
+USE_IMAGE: 1   #use visual measurements. In the current version this must be true.
+USE_IMU: 1  #use inertial measurements. In the current version this must be true.
+USE_MAG_INIT_YAW: 1  #use magenetometer for initialize the yaw angle in the boostraping stage.
+USE_MAG_CORRECT_YAW: 0  #use magnetometer for correcting the yaw angle during optimization.
+USE_STEREO: 0  #use stereo visual measurements.
+
+
+
+
+
+#IMU-camera1 extrinsic calibration
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ -1.1283524065062611e-02, 9.0570010831436121e-03,
+       9.9989532092917277e-01, 1.3224454035460147e-02,
+       -9.9992100257025784e-01, -5.6404389398068133e-03,
+       -1.1232723065088990e-02, 5.7114724738452263e-02,
+       5.5381137189322582e-03, -9.9994307646982916e-01,
+       9.1199296318514866e-03, -1.5241815653778757e-02, 0., 0., 0., 1. ]
+       
+#IMU-camera2 extrinsic calibration
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ 1.2758043578386946e-04, 5.4178784905419830e-03,
+       9.9998531505012322e-01, 1.4290915554844894e-02,
+       -9.9999830610634632e-01, 1.8368308494709495e-03,
+       1.1763022071992202e-04, -4.1677511194353534e-02,
+       -1.8361665694594520e-03, -9.9998363618865893e-01,
+       5.4181036569120877e-03, -1.5204819498359947e-02, 0., 0., 0., 1. ]
+
+#IMU-GNSS antenna extrinsic calibration
+Pbg: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [-0.0051302024,0.0091942546,0.308739733]
+
+#translation and orientation for IMU installation
+IMU_Matrix: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [1,0,0,0,
+               0,1,0,0,
+               0,0, 1 ,0,
+               0,0,0,1 ]
+
+#translation and orientation for magnetometer installation
+Mag_Matrix: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [1,0,0,0,
+               0,1,0,0,
+               0,0, 1 ,0,
+               0,0,0,1 ]
+
+#anchor point for calculating the position under ENU frame.
+ANCHOR_POINT: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [-2323932.39454,5387298.51324,2493096.51920 ]
