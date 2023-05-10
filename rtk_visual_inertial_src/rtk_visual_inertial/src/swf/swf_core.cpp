@@ -418,7 +418,7 @@ void SWFOptimization::AddAllResidual(int mode, std::set<double*>MargePoint, Marg
         options.trust_region_strategy_type = ceres::DOGLEG;
         // options.initial_trust_region_radius=options.max_trust_region_radius=MAX_TRUST_REGION_RADIUS;
         options.max_num_iterations = 1;
-        options.num_threads = 8;
+        options.num_threads = 4;
         options.jacobi_scaling = false;
         ceres::Solver::Summary summary;
         TicToc t_marg;
@@ -445,7 +445,7 @@ void SWFOptimization::AddAllResidual(int mode, std::set<double*>MargePoint, Marg
             options.trust_region_strategy_type = ceres::DOGLEG;
             // options.initial_trust_region_radius=options.max_trust_region_radius=MAX_TRUST_REGION_RADIUS;
             options.max_num_iterations = 1;
-            options.num_threads = 8;
+            options.num_threads = 4;
             options.jacobi_scaling = false;
             ceres::Solver::Summary summary;
             TicToc t_marg;
