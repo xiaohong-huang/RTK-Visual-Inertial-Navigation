@@ -20,7 +20,7 @@ def plot_error(ground_filename, data_filename, align=False, label="",
         return
 
     data[np.isnan(data)] = 1
-
+    # calculating the prism position according to the antenna position and the body orientation.
     data[["px", "py", "pz"]] -= s_R.from_euler("zyx", data[["yaw", "pitch", "roll"]].values,
                                                degrees=True).as_matrix() @ ptg
     data_time = data["time"].values / 1e9
@@ -66,7 +66,7 @@ def plot_error(ground_filename, data_filename, align=False, label="",
 
 
 
-
+#prism-antenna calibration
 ptg = np.array([0.04128228786, -0.02040929358, -0.1396607903])
 
 files = ["R1M1", "R1M2", "R2M1", "R2M2"]
