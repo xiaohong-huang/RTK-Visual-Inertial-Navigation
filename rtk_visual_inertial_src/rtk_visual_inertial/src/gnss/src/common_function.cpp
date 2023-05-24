@@ -1,13 +1,11 @@
 #include "common_function.h"
 
-
+//wave length
 double lams[3][2] = {
     { 0.190293672798364871256993069437, 0.244210213424568250983881512184 },
     { 0.19203948631027648, 0.24834936958430670 },
     { 0.19029367279836487, 0.24834936958430670 }
 };
-
-
 
 
 
@@ -63,6 +61,8 @@ static int ludcmp(double* A, int n, int* indx, double* d) {
     free(vv);
     return 0;
 }
+
+
 static void lubksb(const double* A, int n, const int* indx, double* b) {
     double s;
     int i, ii = -1, ip, j;
@@ -81,9 +81,6 @@ static void lubksb(const double* A, int n, const int* indx, double* b) {
         b[i] = s / A[i + i * n];
     }
 }
-
-
-
 
 
 double satazel(const double* pos, const double* e, double* azel) {
@@ -110,6 +107,7 @@ double dot(const double* a, const double* b, int n) {
     return c;
 }
 
+
 void ecef2pos(const double* r, double* pos) {
     double e2 = FE_WGS84 * (2.0 - FE_WGS84), r2 = dot(r, r, 2), z, zk, v = RE_WGS84, sinp;
 
@@ -124,6 +122,7 @@ void ecef2pos(const double* r, double* pos) {
     pos[2] = sqrt(r2 + z * z) - v;
 }
 
+
 double distance(const double* rr, const double* rs, double* e) {
     double r;
     uint8_t i;
@@ -135,13 +134,10 @@ double distance(const double* rr, const double* rs, double* e) {
 }
 
 
-
-
-
-
 double norm(const double* a, int n) {
     return sqrt(dot(a, a, n));
 }
+
 
 void ecef2enu(const double* pos, const double* r, double* e) {
     double E[9];
@@ -149,6 +145,7 @@ void ecef2enu(const double* pos, const double* r, double* e) {
     xyz2enu(pos, E);
     matmul("NN", 3, 1, 3, 1.0, E, r, 0.0, e);
 }
+
 
 void xyz2enu(const double* pos, double* E) {
     double sinp = sin(pos[0]), cosp = cos(pos[0]), sinl = sin(pos[1]), cosl = cos(pos[1]);
@@ -163,6 +160,7 @@ void xyz2enu(const double* pos, double* E) {
     E[5] = cosp * sinl;
     E[8] = sinp;
 }
+
 
 void matmul(const char* tr, int n, int k, int m, double alpha,
             const double* A, const double* B, double beta, double* C) {
@@ -189,6 +187,8 @@ void matmul(const char* tr, int n, int k, int m, double alpha,
             else C[i + j * n] = alpha * d + beta * C[i + j * n];
         }
 }
+
+
 void matmul6xx6(double* A, double* B, uint8_t n) {
     uint8_t i, k, l;
     uint16_t j1, j2;
@@ -210,6 +210,7 @@ void matmul6xx6(double* A, double* B, uint8_t n) {
         }
     }
 }
+
 
 void matmul61(double* A, double* v, double* B, uint8_t n) {
     uint8_t i, l;
@@ -249,6 +250,7 @@ void matmul3xx3(double* A, double* B, uint8_t n) {
     }
 }
 
+
 void matmul31(double* A, double* v, double* B, uint8_t n) {
     uint8_t i, l;
     uint16_t j1, j2;
@@ -263,6 +265,7 @@ void matmul31(double* A, double* v, double* B, uint8_t n) {
         }
     }
 }
+
 
 uint8_t lsq6( double* A,  double* y, int n, int m, double* x, double* Q) {
 
@@ -322,6 +325,8 @@ uint8_t matinv33(double* a, double* b) {
     b[8] = (a[0] * a[4] - a[1] * a[3]) / det;
     return 1;
 }
+
+
 uint32_t ca, cb;
 uint8_t matinv33f(float* a, float* b) {
     float det = a[0] * a[4] * a[8] + a[1] * a[5] * a[6] + a[3] * a[7] * a[2] - a[2] * a[4] * a[6] - a[5] * a[7] * a[0] - a[1] * a[3] * a[8];
@@ -362,6 +367,7 @@ uint8_t matinv(double* A, int n) {
     return 1;
 }
 
+
 int* imat(int n, int m) {
     int* p;
 
@@ -369,6 +375,8 @@ int* imat(int n, int m) {
     p = (int*)malloc(sizeof(int) * n * m);
     return p;
 }
+
+
 double* mat(int n, int m) {
     double* p;
 
@@ -376,10 +384,11 @@ double* mat(int n, int m) {
     p = (double*)malloc(sizeof(double) * n * m);
     return p;
 }
+
+
 void matcpy(double* A, const double* B, int n, int m) {
     memcpy(A, B, sizeof(double) * n * m);
 }
-
 
 
 void update_azel(double globalxyz[3], mea_t* rover) {
@@ -398,6 +407,7 @@ void update_azel(double globalxyz[3], mea_t* rover) {
     }
 }
 
+
 double velecitydistance(const double* rr, const double* rs, const double* vr, const double* vs, double* e) {
     double r;
     uint8_t i;
@@ -409,3 +419,4 @@ double velecitydistance(const double* rr, const double* rs, const double* vr, co
 
     return dot(ev, e, 3) + OMGE / clight * (vs[1] * rr[0] + rs[1] * vr[0] - vs[0] * rr[1] - rs[0] * vr[1]);
 }
+
