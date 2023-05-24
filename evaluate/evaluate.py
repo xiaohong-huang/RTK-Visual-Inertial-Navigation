@@ -3,6 +3,12 @@ import numpy as np
 from matplotlib import pyplot as plt
 import math
 from scipy.spatial.transform import Rotation as s_R
+#step:
+#1. saving the results and ground files in the current folder.
+#2. renaming the result file names according to the bag names. i.e. if the R1M1.bag is used, renaming the  
+# result file name as R1M1_rtk.csv (for RTK positioning) or R1M1_spp.csv (for SPP positioning).
+#3. run python evaluate.py
+
 
 
 def plot_error(ground_filename, data_filename, align=False, label="",
