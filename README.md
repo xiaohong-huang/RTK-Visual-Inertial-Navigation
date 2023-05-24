@@ -74,6 +74,7 @@ spp_visual_inertial_config.yaml     #SPP-Visual-Inertial-Navigation
 spp_CP_visual_inertial_config.yaml  #SPP-Visual-Inertial-Navigation with carrier-phase fusion
 visual_inertial_config.yaml         #Visual-Inertial-Navigation
 ```
+The evaluate folder includes a demo for evaluating the positioning errors.
 ## 4. Acknowledgements
 The VIO framework is adapted from [VINS-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono). The Ceres-Solver-Modified is developed base on [Ceres-Solver](http://ceres-solver.org/)
 ## 5. Licence
