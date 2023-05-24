@@ -21,16 +21,13 @@ SWFOptimization::SWFOptimization(): f_manager{Rs} {
     rover_count = 0;
     fix = false;
     imu_initialize = false;
+    //initializing the global solver.
     my_options.linear_solver_type = ceres::DENSE_SCHUR;
-    // my_options.initial_trust_region_radius=my_options.max_trust_region_radius=MAX_TRUST_REGION_RADIUS;
     my_options.max_num_iterations = MAX_NUM_ITERATIONS;
     my_options.jacobi_scaling = 0;
     my_options.trust_region_strategy_type = ceres::DOGLEG;
     my_options.num_threads = 4;
     my_options.linear_solver_ordering.reset(new ceres::ParameterBlockOrdering());
-    // my_options.max_solver_time_in_seconds=MAX_SOLVER_TIME;
-
-
     mag_mean.setZero();
 
 
@@ -54,7 +51,7 @@ void SWFOptimization::SetParameter() {
 
 }
 
-
+//need to fix for reseting the system.
 void SWFOptimization::ClearState() {
     for (int i = 0; i < FEATURE_WINDOW_SIZE + GNSS_WINDOW_SIZE + 1; i++) {
 
@@ -120,7 +117,7 @@ void SWFOptimization::ClearState() {
     mag_yaw = 0;
 }
 
-
+//getting the gnss index or visual index according to the frame index, or reverse.
 int SWFOptimization::ImageRoverId2FrameId(int image_rover_index, int mode) {
     int image_rover_index_tmp = image_rover_index;
     image_rover_index++;
@@ -139,7 +136,7 @@ int SWFOptimization::ImageRoverId2FrameId(int image_rover_index, int mode) {
     return -1;
 }
 
-
+//getting the pointer of the states.
 void SWFOptimization::Vector2Double() {
     for (int i = 0; i < rover_count + image_count; i++) {
         para_pose[i][0] = Ps[i].x();
@@ -187,7 +184,7 @@ void SWFOptimization::Vector2Double() {
 }
 
 
-
+//saving the states from pointer.
 void SWFOptimization::Double2Vector() {
 
     for (int i = 0; i < rover_count + image_count; i++) {
@@ -238,11 +235,11 @@ void SWFOptimization::Double2Vector() {
 
 
 
-
+//
 void SWFOptimization::SlideWindowFrame(int frameindex, int windowsize, bool updateIMU) {
 
     if (frameindex != 0) {
-        for (unsigned int i = 0; i < dt_buf[frameindex + 1].size(); i++) { //把最后第二frame和最后第一frame之间的imu数据加到倒数第二frame里面
+        for (unsigned int i = 0; i < dt_buf[frameindex + 1].size(); i++) { 
             pre_integrations[frameindex]->push_back(dt_buf[frameindex + 1][i], linear_acceleration_buf[frameindex + 1][i], angular_velocity_buf[frameindex + 1][i]);
             dt_buf[frameindex].push_back(dt_buf[frameindex + 1][i]);
             linear_acceleration_buf[frameindex].push_back(linear_acceleration_buf[frameindex + 1][i]);
@@ -298,7 +295,8 @@ void SWFOptimization::SlideWindowFrame(int frameindex, int windowsize, bool upda
 }
 
 
-
+//marginalizing the select frames.
+//param margeindex is the set of frame indexes that are selected to be marginalized.
 void SWFOptimization::MargFrames(std::set<int> margeindex) {
     Vector2Double();
 
@@ -431,7 +429,8 @@ void SWFOptimization::MargFrames(std::set<int> margeindex) {
     }
 
 }
-
+//getting the states (pointer) that will being marginzlized.
+//param margeindex is the set of frame indexes that are selected to be marginalized.
 std::set <double*> SWFOptimization::FindMargSet(std::set<int> margeindex) {
     std::set<double*>MargePoints;
     for (auto it = margeindex.begin(); it != margeindex.end(); it++) {
@@ -488,7 +487,7 @@ std::set <double*> SWFOptimization::FindMargSet(std::set<int> margeindex) {
     return MargePoints;
 }
 
-
+//marginalizing the selected gnss frames.
 MarginalizationInfo* SWFOptimization::MargGNSSFrames(std::set<int> margeindex, IMUGNSSBase* IMUGNSSmeasurement) {
     Vector2Double();
     std::set <double*>MargePoints = FindMargSet( margeindex);
@@ -548,9 +547,6 @@ void SWFOptimization::SlideWindow() {
     } else {
         return;
     }
-    // if(rover_count>200){
-    //     marg_flag=MargImagOld;
-    // }
 
     std::set<int>margeindex;
 
@@ -656,7 +652,7 @@ void SWFOptimization::SlideWindow() {
 
 
 
-
+//updating the frame index, gnss frame index, and visual frame index.
 void SWFOptimization::UpdateVisualGnssIndex() {
     for (int k = 0; k < image_count; k++) {
         i2f[k] = ImageRoverId2FrameId(k, ImagFrame);
@@ -669,10 +665,8 @@ void SWFOptimization::UpdateVisualGnssIndex() {
 }
 
 
-
+//regenerating the gnss-imu factor.
 void SWFOptimization::ResetImuGnssFactor(int IMUGNSSindex, MarginalizationInfo* gnss_middle_marginfo) {
-
-
 
     if (imu_gnss_factor[IMUGNSSindex]) {
         if (USE_GLOBAL_OPTIMIZATION)
@@ -715,7 +709,7 @@ void SWFOptimization::ResetImuGnssFactor(int IMUGNSSindex, MarginalizationInfo* 
 
 
 
-
+//adding the new gnss, imu information to the corresponding gnss-imu factor.
 void SWFOptimization::UpdateImuGnssFactor() {
 
 
@@ -734,7 +728,7 @@ void SWFOptimization::UpdateImuGnssFactor() {
     }
 
 }
-
+//finding the avaliable gnss observations.
 uint8_t getVariableUseSingleNum(mea_t* obs_data) {
     uint8_t i, j = 0;
     ObsMea* datai = obs_data->obs_data;
@@ -747,7 +741,7 @@ uint8_t getVariableUseSingleNum(mea_t* obs_data) {
     return j;
 }
 
-
+//main process
 void SWFOptimization::MeasurementProcess() {
 #define condition1 (USE_IMAGE&&USE_GNSS&&USE_IMU&&!feature_buf.empty()&&!rover_buf.empty())
 #define condition2 (!USE_IMAGE&&USE_GNSS&&!rover_buf.empty())
@@ -899,7 +893,7 @@ void SWFOptimization::MeasurementProcess() {
 }
 
 
-
+//publicating and saving results.
 void SWFOptimization::PubData() {
 
 
