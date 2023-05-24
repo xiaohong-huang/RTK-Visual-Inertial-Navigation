@@ -144,8 +144,6 @@ uint8_t lsq3(double* A, double* y, int n, int m, double* x, double* Q);
 int lsq(double* A, double* y, int n, int m, double* x, double* Q);
 double dot(const double* a, const double* b, int n);
 double norm(const double* a, int n);
-
-
 double velecitydistance(const double* rr, const double* rs, const double* vr, const double* vs, double* e);
 void update_azel(double globalxyz[3], mea_t* rover);
 
