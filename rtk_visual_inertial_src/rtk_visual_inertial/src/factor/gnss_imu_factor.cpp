@@ -552,12 +552,6 @@ void IMUGNSSBase::UpdateRhsPose(int i) {
         dx.data(),
         rhs5[O_N]);
 
-    // VectorXd_ rt(phase_biases_values.rows());
-    // ceres::internal::MatrixTransposeVectorMultiply<15,Eigen::Dynamic, 0>(
-    //     pose_phase_biases_hessians[i].data(), hessian_size[O_Pose1], hessian_size[O_N],
-    //     dx.data(),
-    //     rt.data());
-
 
 
 }
@@ -713,9 +707,8 @@ bool IMUGNSSBase::Evaluate(double const* const* parameters, double* residuals, d
     if (history_flag && update_flag)UpdateHiddenState();
 
     if (!history_flag || update_flag) {
-
+        
         update_round++;
-        // std::cout<<"update jacobian\r\n";
         history_flag = true;
         SaveLastStates(Pi, Bi, Pj, Bj);
         ResetMem();
