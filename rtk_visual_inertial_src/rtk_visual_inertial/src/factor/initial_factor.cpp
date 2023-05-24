@@ -2,7 +2,6 @@
 #include "../utility/utility.h"
 
 
-
 bool InitialPoseFactor::Evaluate(double const* const* parameters, double* residuals, double** jacobians) const {
     Eigen::Vector3d P(parameters[0][0], parameters[0][1], parameters[0][2]);
     Eigen::Quaterniond Q(parameters[0][6], parameters[0][3], parameters[0][4], parameters[0][5]);
@@ -26,13 +25,12 @@ bool InitialPoseFactor::Evaluate(double const* const* parameters, double* residu
 
 }
 
+
 InitialPoseFactor::InitialPoseFactor(const Eigen::Vector3d& _P, const Eigen::Quaterniond& _Q, Eigen::Matrix<double, 6, 6>sqrt_info_) {
     init_P = _P;
     init_Q = _Q;
     sqrt_info = sqrt_info_;
 }
-
-
 
 
 bool InitialFactor33::Evaluate(double const* const* parameters, double* residuals, double** jacobians) const {
@@ -54,6 +52,8 @@ bool InitialFactor33::Evaluate(double const* const* parameters, double* residual
     return true;
 
 }
+
+
 InitialFactor33::InitialFactor33(const Eigen::Vector3d& _P, Eigen::Matrix<double, 3, 3>sqrt_info_) {
     init_P = _P;
     sqrt_info = sqrt_info_;
@@ -69,12 +69,14 @@ bool InitialFactor11::Evaluate(double const* const* parameters, double* residual
         }
     }
     return true;
-
 }
+
+
 InitialFactor11::InitialFactor11(double P_, double sqrt_info_) {
     init_P = P_;
     sqrt_info = sqrt_info_;
 }
+
 
 bool InitialBlackFactor::Evaluate(double const* const* parameters, double* residuals, double** jacobians) const {
     residuals[0] = parameters[0][0] * istd;
@@ -83,7 +85,6 @@ bool InitialBlackFactor::Evaluate(double const* const* parameters, double* resid
     }
     return true;
 }
-
 
 
 bool InitialBiasFactor::Evaluate(double const* const* parameters, double* residuals, double** jacobians) const {
@@ -110,9 +111,11 @@ bool InitialBiasFactor::Evaluate(double const* const* parameters, double* residu
     return true;
 }
 
+
 InitialBiasFactor::InitialBiasFactor(const Eigen::Vector3d& _V, const Eigen::Vector3d& _Ba, const Eigen::Vector3d& _Bg, const Eigen::Matrix<double, 9, 9>sqrt_info_) {
     init_Ba = _Ba;
     init_Bg = _Bg;
     init_V = _V;
     sqrt_info = sqrt_info_;
 }
+
