@@ -66,7 +66,7 @@ def plot_error(ground_filename, data_filename, align=False, label="",
 
 
 
-#prism-antenna calibration
+#imu-prism calibration
 ptg = np.array([0.04128228786, -0.02040929358, -0.1396607903])
 
 files = ["R1M1", "R1M2", "R2M1", "R2M2"]
