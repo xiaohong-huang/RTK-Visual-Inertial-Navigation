@@ -75,7 +75,10 @@ spp_CP_visual_inertial_config.yaml  #SPP-Visual-Inertial-Navigation with carrie
 visual_inertial_config.yaml         #Visual-Inertial-Navigation
 ```
 We have also provide a demo for evaluating the positioning errors (see [evaluate.py](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation/blob/main/evaluate/evaluate.py)). 
-## 4. Acknowledgements
-The VIO framework is adapted from [VINS-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono). The Ceres-Solver-Modified is developed base on [Ceres-Solver](http://ceres-solver.org/)
-## 5. Licence
+## 4. Run RTK-Visual-Inertial-Navigation in Jetson-TX2
+We have provide a fast version of RTK-Visual-Inertial-Navigation in [evaluate.py](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation-Fast), which is able to achieve realtime state estimation in Jetson-Tx2 with 20~25HZ of state update rate.
+
+## 5. Acknowledgements
+The VIO framework is adapted from [VINS-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono). The Ceres-Solver-Modified is developed base on [Ceres-Solver](http://ceres-solver.org/).
+## 6. Licence
 The source code is released under [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) license.
