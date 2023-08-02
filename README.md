@@ -79,7 +79,7 @@ We have also provide a demo for evaluating the positioning errors (see [evaluate
 
 We have provide a fast version of RTK-Visual-Inertial-Navigation in [RTK-Visual-Inertial-Navigation-JetsonTX2](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation-JetsonTX2) and [RTK-Visual-Inertial-Navigation-Orangepi5](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation-Orangepi5). The [RTK-Visual-Inertial-Navigation-JetsonTX2](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation-JetsonTX2) is able to achieve real-time state estimation with a state update rate of 20~25Hz in Jetson-Tx2. And The [RTK-Visual-Inertial-Navigation-Orangepi5](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation-Orangepi5) is able to achieve real-time state estimation with a state update rate of 25Hz in Orangepi5.
 ![image](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation/blob/main/fig/jetson-tx2.png)
-![image](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation/blob/main/fig/orangepi.jpg)
+![image](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation/blob/main/fig/pi-5-banner-img.png)
 
 ## 5. Acknowledgements
 The VIO framework is adapted from [VINS-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono). The Ceres-Solver-Modified is developed base on [Ceres-Solver](http://ceres-solver.org/).
