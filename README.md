@@ -41,7 +41,7 @@ tar -xvf ceres-solver-modified.tar
 cd ceres-solver-modified/
 sh build.sh
 ```
-The modified version will only be installed in the current folder. So you don't need to worry that the installation will change the settings of your computer.
+The modified version will only be installed in the workspace's folder. So you don't need to worry that the installation will change the settings of your computer.
 
  Then build the package with:
 ```
