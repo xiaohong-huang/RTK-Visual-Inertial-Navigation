@@ -77,7 +77,7 @@ visual_inertial_config.yaml         #Visual-Inertial-Navigation
 We have also provide a demo for evaluating the positioning errors (see [evaluate.py](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation/blob/main/evaluate/evaluate.py)). 
 ## 4. Run RTK-Visual-Inertial-Navigation in [Jetson-TX2](https://developer.nvidia.com/embedded/jetson-tx2)
 
-We have provide a fast version of RTK-Visual-Inertial-Navigation in [RTK-Visual-Inertial-Navigation-Fast](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation-Fast), which is able to achieve real-time state estimation with a state update rate of 20~25Hz in Jetson-Tx2.
+We have provide a fast version of RTK-Visual-Inertial-Navigation in [RTK-Visual-Inertial-Navigation-JetsonTX2](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation-JetsonTX2), which is able to achieve real-time state estimation with a state update rate of 20~25Hz in Jetson-Tx2.
 
 ![image](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation/blob/main/fig/jetson-tx2.png)
 
