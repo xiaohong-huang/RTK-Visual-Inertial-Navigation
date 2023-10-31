@@ -113,25 +113,7 @@ void imu_callback(const sensor_msgs::ImuConstPtr& imu_msg) {
     if (imu_msg->header.stamp.toSec() < start_timestamp - 1)return;
     static double oldt;
     double t = imu_msg->header.stamp.toSec();
-    if (oldt != 0) {
-        assert(t - oldt > 0.0024);
-        while (t - oldt >= 0.0026) {
-            double dx = imu_msg->linear_acceleration.x;
-            double dy = imu_msg->linear_acceleration.y;
-            double dz = imu_msg->linear_acceleration.z;
-            double rx = imu_msg->angular_velocity.x;
-            double ry = imu_msg->angular_velocity.y;
-            double rz = imu_msg->angular_velocity.z;
-            Vector3d acc(dx, dy, dz);
-            Vector3d gyr(rx, ry, rz);
-            acc = IMUMatrix * acc;
-            gyr = IMUMatrix * gyr;
-            swf_optimization->InputIMU(oldt + 0.0025, acc, gyr);
-            oldt = oldt + 0.0025;
-            std::cout << "IMU miss frame:" << t << "," << oldt << std::endl;
-        }
-        assert(t - oldt < 0.0026);
-    }
+
     double dx = imu_msg->linear_acceleration.x;
     double dy = imu_msg->linear_acceleration.y;
     double dz = imu_msg->linear_acceleration.z;
