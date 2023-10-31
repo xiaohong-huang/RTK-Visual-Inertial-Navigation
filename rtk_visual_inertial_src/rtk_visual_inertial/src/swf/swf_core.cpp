@@ -499,7 +499,7 @@ void SWFOptimization::InitializeSqrtInfo() {
     Eigen::Matrix<double, 6, 6>sqrt_info_pose;
     sqrt_info_pose.setZero();
     sqrt_info_pose.block<3, 3>(0, 0) = Eigen::Matrix<double, 3, 3>::Identity() * ((rover_count > 0) ? 1e-3 : 2e2);
-    sqrt_info_pose.block<3, 3>(3, 3) = Eigen::Matrix<double, 3, 3>::Identity() * 2e2;
+    sqrt_info_pose.block<3, 3>(3, 3) = Eigen::Matrix<double, 3, 3>::Identity() * ((rover_count > 0) ? 180/PI/5 : 2e2);
     MargePoint.insert(A11);
     ADDRESIDUAL (A11, B11, false, std::vector<int> {})
 
@@ -507,8 +507,8 @@ void SWFOptimization::InitializeSqrtInfo() {
         Eigen::Matrix<double, 9, 9>sqrt_info_bias;
         sqrt_info_bias.setZero();
         sqrt_info_bias.block<3, 3>(0, 0) = Eigen::Matrix<double, 3, 3>::Identity() * ((rover_count > 0) ? 1e-3 : 1e1);
-        sqrt_info_bias.block<3, 3>(3, 3) = Eigen::Matrix<double, 3, 3>::Identity() * 1;
-        sqrt_info_bias.block<3, 3>(6, 6) = Eigen::Matrix<double, 3, 3>::Identity() * 1e1;
+        sqrt_info_bias.block<3, 3>(3, 3) = Eigen::Matrix<double, 3, 3>::Identity() * 1e1;
+        sqrt_info_bias.block<3, 3>(6, 6) = Eigen::Matrix<double, 3, 3>::Identity() * 1e2;
         MargePoint.insert(A12);
         ADDRESIDUAL (A12, B12, false, std::vector<int> {})
     }
