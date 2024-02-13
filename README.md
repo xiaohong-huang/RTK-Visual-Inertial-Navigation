@@ -1,6 +1,6 @@
 # RTK-Visual-Inertial-Navigation
 
-A Sliding Window Filter with GNSS-State Constraint for RTK-Visual-Inertial Navigation. [paper link]()
+A Sliding Window Filter with GNSS-State Constraint for RTK-Visual-Inertial Navigation. [paper link](https://ieeexplore.ieee.org/document/10432782)
 
 Authors: Xiaohong Huang, Cui Yang
 
