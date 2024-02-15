@@ -78,6 +78,7 @@ We have also provide a demo for evaluating the positioning errors (see [evaluate
 ## 4. Run RTK-Visual-Inertial-Navigation in [Jetson-TX2](https://developer.nvidia.com/embedded/jetson-tx2) and [Orangepi5]([https://developer.nvidia.com/embedded/jetson-tx2](http://www.orangepi.cn/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-5.html))
 
 We have provide a fast version of RTK-Visual-Inertial-Navigation in [RTK-Visual-Inertial-Navigation-JetsonTX2](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation-JetsonTX2) and [RTK-Visual-Inertial-Navigation-Orangepi5](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation-Orangepi5). The [RTK-Visual-Inertial-Navigation-JetsonTX2](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation-JetsonTX2) is able to achieve real-time state estimation with a state update rate of 20~25Hz in Jetson-Tx2. And The [RTK-Visual-Inertial-Navigation-Orangepi5](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation-Orangepi5) is able to achieve real-time state estimation with a state update rate of 25Hz in Orangepi5.
+
 ![image](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation/blob/main/fig/jetson-tx2.png)
 ![image](https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation/blob/main/fig/pi-5-banner-img.png)
 
