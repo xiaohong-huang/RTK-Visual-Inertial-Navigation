@@ -75,8 +75,8 @@ typedef struct {
     uint8_t sys;//satellite system
     uint8_t SVH;//satellite health
 
-    uint8_t	RTK_LLI[NFREQ];//RB-SD carrier-phase cycle slip count
-    uint8_t	SPP_LLI[NFREQ];//Rover-only carrier-phase cycle slip count
+    uint8_t	RTK_SLIP_COUNT[NFREQ];//RB-SD carrier-phase cycle slip count
+    uint8_t	SPP_SLIP_COUNT[NFREQ];//Rover-only carrier-phase cycle slip count
     uint8_t half_flag[NFREQ];//RB-SD carrier-phase half flag
 
     double SPP_P[NFREQ];//Rover-only pseudorange measurement(with correction) [m]
