@@ -357,7 +357,7 @@ void SWFOptimization::GnssPreprocess(mea_t* data) {
                 std::vector<double*>parameter_blocks = std::vector<double*> {para_pose[g2f[ir]], &(d->RTK_Npoint[f]->value), para_gnss_dt[0] + sys * 2 + f};
                 factor->Evaluate(parameter_blocks.data(), &residuals, 0);
                 error1_rtk[i * 2 + f] = residuals;
-                if (d->RTK_Npoint[f]->LLI == d->RTK_LLI[f]) {
+                if (d->RTK_Npoint[f]->SLIP_COUNT == d->RTK_SLIP_COUNT[f]) {
                     error2_rtk[d->sys * 2 + f].push_back(residuals);
                 }
                 delete factor;
@@ -371,7 +371,7 @@ void SWFOptimization::GnssPreprocess(mea_t* data) {
                 };
                 factor->Evaluate(parameter_blocks.data(), &residuals, 0);
                 error1_spp[i * 2 + f] = residuals;
-                if (d->SPP_Npoint[f]->LLI == d->SPP_LLI[f]) {
+                if (d->SPP_Npoint[f]->SLIP_COUNT == d->SPP_SLIP_COUNT[f]) {
                     error2_spp[d->sys * 2 + f].push_back(residuals);
                 }
                 delete factor;
@@ -404,7 +404,7 @@ void SWFOptimization::GnssPreprocess(mea_t* data) {
             bool condition3 = false;
             bool condition4 = false;
             if (d->RTK_L[f] != 0) {
-                if (USE_IMU && USE_RTK && solver_flag == NonLinear && rover_count > 1 && d->RTK_Npoint[f] && d->RTK_Npoint[f]->LLI == d->RTK_LLI[f]) {
+                if (USE_IMU && USE_RTK && solver_flag == NonLinear && rover_count > 1 && d->RTK_Npoint[f] && d->RTK_Npoint[f]->SLIP_COUNT == d->RTK_SLIP_COUNT[f]) {
                     double residuals = error1_rtk[i * 2 + f];
                     if (fabs(residuals - median_error_rtk[sys * 2 + f]) > lam[f] / 2) {
                         condition3 = true;
@@ -414,7 +414,7 @@ void SWFOptimization::GnssPreprocess(mea_t* data) {
             }
 
             if (d->SPP_L[f] != 0) {
-                if (USE_IMU && USE_SPP_PHASE && solver_flag == NonLinear && rover_count > 1 && d->SPP_Npoint[f] && d->SPP_Npoint[f]->LLI == d->SPP_LLI[f]) {
+                if (USE_IMU && USE_SPP_PHASE && solver_flag == NonLinear && rover_count > 1 && d->SPP_Npoint[f] && d->SPP_Npoint[f]->SLIP_COUNT == d->SPP_SLIP_COUNT[f]) {
                     double residuals = error1_spp[i * 2 + f];
                     if (abs((d->SPP_L[f] + d->SPP_Npoint[f]->value)*lam[f] - d->SPP_P[f])*sin(d->el)*sin(d->el) > 10) {
                         condition4 = true;
@@ -430,7 +430,7 @@ void SWFOptimization::GnssPreprocess(mea_t* data) {
             }
 
             if (d->RTK_L[f] != 0) {
-                if ((!d->RTK_Npoint[f]) || (d->RTK_Npoint[f]->LLI != d->RTK_LLI[f]) || condition3 || not_fix_count > Phase_ALL_RESET_COUNT) {
+                if ((!d->RTK_Npoint[f]) || (d->RTK_Npoint[f]->SLIP_COUNT != d->RTK_SLIP_COUNT[f]) || condition3 || not_fix_count > Phase_ALL_RESET_COUNT) {
                     PBtype n;
                     n.sys = d->sys;
                     n.f = f;
@@ -440,7 +440,7 @@ void SWFOptimization::GnssPreprocess(mea_t* data) {
                     auto it = rtk_phase_bias_variables[d->sat * 2 + f].end();
                     it--;
                     d->RTK_Npoint[f] = &(*it);
-                    d->RTK_Npoint[f]->LLI = d->RTK_LLI[f];
+                    d->RTK_Npoint[f]->SLIP_COUNT = d->RTK_SLIP_COUNT[f];
                     d->RTK_Npoint[f]->half_flag = d->half_flag[f];
 
                 }
@@ -451,7 +451,7 @@ void SWFOptimization::GnssPreprocess(mea_t* data) {
             }
 
             if (d->SPP_L[f] != 0) {
-                if ((!d->SPP_Npoint[f]) || (d->SPP_Npoint[f]->LLI != d->SPP_LLI[f]) || condition3 || condition4) {
+                if ((!d->SPP_Npoint[f]) || (d->SPP_Npoint[f]->SLIP_COUNT != d->SPP_SLIP_COUNT[f]) || condition3 || condition4) {
                     PBtype n;
                     n.sys = d->sys;
                     n.f = f;
@@ -461,7 +461,7 @@ void SWFOptimization::GnssPreprocess(mea_t* data) {
                     auto it2 = spp_phase_bias_variables[d->sat * 2 + f].end();
                     it2--;
                     d->SPP_Npoint[f] = &(*it2);
-                    d->SPP_Npoint[f]->LLI = d->SPP_LLI[f];
+                    d->SPP_Npoint[f]->SLIP_COUNT = d->SPP_SLIP_COUNT[f];
                     d->SPP_Npoint[f]->half_flag = d->half_flag[f];
 
                 }
