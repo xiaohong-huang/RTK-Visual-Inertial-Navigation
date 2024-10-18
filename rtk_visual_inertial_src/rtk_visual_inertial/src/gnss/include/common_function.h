@@ -61,7 +61,7 @@ class PBtype {
     std::map<PBtype*, int>bestNtype; //not use
     bool use;//being observed by the remaind states
     bool isbest;//not use
-    uint8_t LLI;//cycle slip flag
+    uint8_t SLIP_COUNT;//cycle slip count
     uint8_t half_flag;//half flag
     uint8_t sys;//satellite system
     uint8_t f;//measured freequency
