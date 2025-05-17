@@ -1,4 +1,4 @@
-# RTK-Visual-Inertial-Navigation
+# FOCUS-RVINS
 
 A Sliding Window Filter with GNSS-State Constraint for RTK-Visual-Inertial Navigation. [paper link](https://ieeexplore.ieee.org/document/10432782)
 
