@@ -32,6 +32,7 @@ Clone the repository to your catkin workspace (for example `~/catkin_ws/`):
 ```
 cd ~/catkin_ws/src/
 git clone https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation
+cd RTK-Visual-Inertial-Navigation
 git checkout FLOWER-FOCUS
 ```
 Build the OpenCV4 (>=4.3.0):
