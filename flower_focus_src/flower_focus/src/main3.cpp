@@ -227,9 +227,6 @@ int main(int argc, char** argv) {
 #endif
     LEAK_NUM = SWF_SIZE_IN - 1;
 
-    RESULT_PATH = RESULT_PATH + argv[4];
-
-    RESULT_PATH = RESULT_PATH  + "_0_0.txt";
 
 #if DEBUG
     time_t t = time(nullptr);
@@ -329,12 +326,6 @@ int main(int argc, char** argv) {
     registerPub(n);
 #endif
     LEAK_NUM = SWF_SIZE_IN - 1;
-
-    RESULT_PATH = RESULT_PATH + argv[4];
-
-
-
-    RESULT_PATH = RESULT_PATH  + "_0_0.txt";
 
 #if DEBUG
     time_t t = time(nullptr);
