@@ -1,0 +1,57 @@
+%YAML:1.0
+#########################################BAG TOPIC SETTING#########################################
+# imu_topic: "imu_raw" #imu topic
+# image0_topic: "left_camera"   #image topic
+# image1_topic: "right_camera"   #image topic
+num_of_cam: 2
+imu_topic: "imu_raw" #imu topic
+image0_topic: "left_camera"   #image topic
+image1_topic: "right_camera"   #image topic
+cam0_calib: "my_cam0.yaml"  #camera intrinsic parameter
+cam1_calib: "my_cam1.yaml"  #camera intrinsic parameter
+image_width: 752
+image_height: 480
+#######################################IMU PARAMETER SETTING#######################################
+gyr_nonlinearity: 0.05  # gyroscope nonlinearity
+int_n: 0.01                     #velocity integration noise standard deviation
+acc_n: 0.147968          # accelerometer measurement noise standard deviation
+gyr_n: 0.0068504         # gyroscope measurement noise standard deviation.    
+acc_w: 0.0017756        # accelerometer bias random work noise standard deviation. 
+gyr_w: 0.0000986       # gyroscope bias random work noise standard deviation.        
+g_norm: 9.788     # GuangZhou gravity magnitude
+########################################EXTRINSIC PARAMETER########################################
+
+# IMU-camera0 extrinsic calibration data4
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ -1.1283524065062611e-02, 9.0570010831436121e-03, 9.9989532092917277e-01, 1.3224454035460147e-02,
+       -9.9992100257025784e-01, -5.6404389398068133e-03, -1.1232723065088990e-02, 5.7114724738452263e-02,
+       5.5381137189322582e-03, -9.9994307646982916e-01, 9.1199296318514866e-03, -1.5241815653778757e-02, 
+       0., 0., 0., 1. ]
+# IMU-camera1 extrinsic calibration data4
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ 1.2758043578386946e-04, 5.4178784905419830e-03, 9.9998531505012322e-01, 1.4290915554844894e-02,
+       -9.9999830610634632e-01, 1.8368308494709495e-03, 1.1763022071992202e-04, -4.1677511194353534e-02,
+       -1.8361665694594520e-03, -9.9998363618865893e-01, 5.4181036569120877e-03, -1.5204819498359947e-02, 
+       0., 0., 0., 1. ]
+
+#GROUNDTRUTH-IMU extrinsic calibration
+Pgb: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [0.04128228786, -0.02040929358, -0.1396607903]
+########################################CAMERA SETTING########################################
+feature_min_dist: 10            # min distance between two features, adjust by image size.
+FOCAL_LENGTH:  1000.0   #focal length of the camera
+SHOW_TRACK: 0           # publish tracking image as topic
+
+########################################OTHER SETTING########################################
+SKIP_TIME: 15
+
+

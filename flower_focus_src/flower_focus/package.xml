@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <name>flower_focus</name>
+  <version>0.0.0</version>
+  <description>The flower_focus package</description>
+  <maintainer email="xiaohonghuang@mail.scut.edu.cn">xiaohonghuang</maintainer>
+
+
+  <license>GPLv3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>image_transport</build_depend>
+<build_depend>libpcl-all-dev</build_depend>
+<!-- <exec_depend>libpcl-all</exec_depend> -->
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>image_transport</run_depend>
+  
+  <export>
+
+  </export>
+</package>

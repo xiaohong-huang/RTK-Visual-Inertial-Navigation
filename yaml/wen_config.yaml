@@ -1,0 +1,53 @@
+%YAML:1.0
+#########################################BAG TOPIC SETTING#########################################
+imu_topic: "/camera/imu_raw" #imu topic
+image0_topic: "/camera/left_camera"   #image topic
+image1_topic: "/camera/right_camera"   #image topic
+cam0_calib: "wen_cam0.yaml"  #camera intrinsic parameter
+cam1_calib: "wen_cam1.yaml"  #camera intrinsic parameter
+num_of_cam: 2
+image_width: 480
+image_height: 752
+#######################################IMU PARAMETER SETTING#######################################
+gyr_nonlinearity: 0.05  # gyroscope nonlinearity
+int_n: 0.01                     #velocity integration noise standard deviation
+acc_n: 0.147968          # accelerometer measurement noise standard deviation
+gyr_n: 0.0068504         # gyroscope measurement noise standard deviation.    
+acc_w: 0.0017756        # accelerometer bias random work noise standard deviation. 
+gyr_w: 0.0000986       # gyroscope bias random work noise standard deviation.        
+g_norm: 9.788     # GuangZhou gravity magnitude
+########################################EXTRINSIC PARAMETER########################################
+#IMU-camera0 extrinsic calibration
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ 0.00851574, -0.00906697,  0.99992263,  0.03274059,
+        -0.9996785,  -0.02395953 , 0.00829641 , 0.05546601,
+        0.02388245, -0.99967181 ,-0.00926809 ,-0.01117813,
+        0.         , 0.        ,  0.     ,     1.   ]
+   
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ 0.00949843, -0.00524241,  0.99994115,  0.03405037,
+        -0.99980842, -0.01716499,  0.00940718, -0.05660015,
+        0.01711466, -0.99983893, -0.00540444, -0.00983626,
+        0.        ,  0.        ,  0.        ,  1.        ]
+
+#GROUNDTRUTH-IMU extrinsic calibration
+Pgb: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [0.04128228786, -0.02040929358, -0.1396607903]
+########################################CAMERA SETTING########################################
+feature_min_dist: 10            # min distance between two features, adjust by image size.
+FOCAL_LENGTH:  1000.0   #focal length of the camera
+SHOW_TRACK: 0           # publish tracking image as topic
+
+########################################OTHER SETTING########################################
+
+
+

@@ -1,0 +1,1 @@
+cmake -DCMAKE_BUILD_TYPE=Release -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -DWITH_CUDA=ON -DBUILD_opencv_face=OFF ..

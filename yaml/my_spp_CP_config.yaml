@@ -1,0 +1,68 @@
+%YAML:1.0
+#########################################BAG TOPIC SETTING#########################################
+imu_topic: "imu_raw" #imu topic
+image0_topic: "left_camera"   #image topic
+cam0_calib: "my_cam0.yaml"  #camera intrinsic parameter
+image_width: 752
+image_height: 480
+#######################################IMU PARAMETER SETTING#######################################
+gyr_nonlinearity: 0.01  # gyroscope nonlinearity
+int_n: 0.01                     #velocity integration noise standard deviation
+acc_n: 0.147968          # accelerometer measurement noise standard deviation
+gyr_n: 0.0068504         # gyroscope measurement noise standard deviation.    
+acc_w: 0.0017756        # accelerometer bias random work noise standard deviation. 
+gyr_w: 0.0000986       # gyroscope bias random work noise standard deviation.        
+g_norm: 9.788     # GuangZhou gravity magnitude
+########################################EXTRINSIC PARAMETER########################################
+#IMU-camera0 extrinsic calibration
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ -1.1283524065062611e-02, 9.0570010831436121e-03,
+       9.9989532092917277e-01, 1.3224454035460147e-02,
+       -9.9992100257025784e-01, -5.6404389398068133e-03,
+       -1.1232723065088990e-02, 5.7114724738452263e-02,
+       5.5381137189322582e-03, -9.9994307646982916e-01,
+       9.1199296318514866e-03, -1.5241815653778757e-02, 0., 0., 0., 1. ]
+#GROUNDTRUTH-IMU extrinsic calibration
+Pgb: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [0.04128228786, -0.02040929358, -0.1396607903]
+########################################CAMERA SETTING########################################
+feature_min_dist: 10            # min distance between two features, adjust by image size.
+FOCAL_LENGTH:  1000.0   #focal length of the camera
+SHOW_TRACK: 0           # publish tracking image as topic
+
+########################################OTHER SETTING########################################
+SKIP_TIME: 15 #skip the first 15 seconds of  static movement measurements. this will be fix in the future.
+
+
+########################################GNSS SETTING########################################
+rtk_potic: "gnss" #gnss topic
+mag_potic: "mag_raw" #magnetometer topic
+
+Pbg: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [-0.0051302024,0.0091942546,0.308739733]
+#anchor point for calculating the position under ENU frame.
+ANCHOR_POINT: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [-2323932.39454,5387298.51324,2493096.51920 ]
+
+
+USE_RTK: 0
+USE_RTD: 0
+USE_GNSS: 1
+USE_DOPPLER: 1
+USE_SPP_PHASE: 1
+USE_SPP_CORRECTION: 1
+ESTIMATE_EXTRINSIC: 0
+ESTIMATE_R_WI_WC: 1
+
