@@ -227,11 +227,9 @@ int main(int argc, char** argv) {
 #endif
     LEAK_NUM = SWF_SIZE_IN - 1;
 
-    string s = argv[5];
-    long mode = std::stol(s);
     RESULT_PATH = RESULT_PATH + argv[4];
 
-    RESULT_PATH = RESULT_PATH + "_" + std::to_string(mode) + "_0_0.txt";
+    RESULT_PATH = RESULT_PATH  + "_0_0.txt";
 
 #if DEBUG
     time_t t = time(nullptr);
@@ -332,13 +330,11 @@ int main(int argc, char** argv) {
 #endif
     LEAK_NUM = SWF_SIZE_IN - 1;
 
-    string s = argv[5];
-    long mode = std::stol(s);
     RESULT_PATH = RESULT_PATH + argv[4];
 
 
 
-    RESULT_PATH = RESULT_PATH + "_" + std::to_string(mode) + "_0_0.txt";
+    RESULT_PATH = RESULT_PATH  + "_0_0.txt";
 
 #if DEBUG
     time_t t = time(nullptr);
