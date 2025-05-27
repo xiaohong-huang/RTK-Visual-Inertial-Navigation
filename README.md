@@ -51,6 +51,10 @@ cmake ..
 make -j8
 #Do not use "make install"
 
+#clone octomap_mapping
+cd ~/catkin_ws/src/RTK-Visual-Inertial-Navigation
+git clone https://github.com/OctoMap/octomap_mapping
+
 #build ceres-solver-modified
 cd ~/catkin_ws/src/RTK-Visual-Inertial-Navigation
 tar -xvf ceres-solver-modified.tar
