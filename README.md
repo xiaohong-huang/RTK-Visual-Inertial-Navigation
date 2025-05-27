@@ -28,6 +28,7 @@ Clone the repository to your catkin workspace (for example `~/catkin_ws/`):
 ```
 cd ~/catkin_ws/src/
 git clone https://github.com/xiaohong-huang/RTK-Visual-Inertial-Navigation.git
+git checkout FOCUS-RVINS
 ```
 In our source code, we have developed our solving strategy based on [Ceres-Solver](http://ceres-solver.org/). The original version of [Ceres-Solver](http://ceres-solver.org/) is not satisfied for our project. To build the project, you need to build our modified Ceres-Solver with:
 ```
