@@ -50,7 +50,7 @@ typedef  Eigen::Matrix<double, 15, 15, Eigen::RowMajor> Matrix15d;
 
 
 #if USE_STEREO
-#define STEREO_SCALE 1
+#define STEREO_SCALE 0.1
 #define ESTIMATE_EXTRINSIC2 0
 #else
 #define ESTIMATE_EXTRINSIC2 0
